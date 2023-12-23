@@ -12,9 +12,42 @@ namespace CashMachine.Infrastructure.DataAccess.Repositories
         public UserRepository(IPostgresConnectionProvider connectionProvider)
             => _connectionProvider = connectionProvider;
 
-        public User? GetUserByBankAccount(Guid bankAccountId)
+        public User? Get(Guid id)
         {
-            throw new NotImplementedException();
+            const string sql = @"
+            select id,
+                   role,
+                   password_hash,
+                   name,
+                   description,
+                   actual,
+                   ts
+            from ""user""
+            where id = :id;
+            ";
+
+            var connection = _connectionProvider
+                .GetConnectionAsync(default)
+                .GetAwaiter()
+                .GetResult();
+
+            using var command = new NpgsqlCommand(sql, connection)
+                .AddParameter("id", id);
+
+            using var reader = command.ExecuteReader();
+
+            if (reader.Read() is false)
+                return null;
+
+            return new User(
+                Id: reader.GetGuid(0),
+                Role: reader.GetFieldValue<UserRole>(1),
+                PasswordHash: reader.GetString(2),
+                Name: reader.GetString(3),
+                Description: reader.GetString(4),
+                Actual: reader.GetBoolean(5),
+                Ts: reader.GetDateTime(6)
+                );
         }
 
         public User? GetUserByPassword(string passwordHash)

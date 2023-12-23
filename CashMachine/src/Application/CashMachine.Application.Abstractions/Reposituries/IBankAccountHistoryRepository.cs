@@ -5,5 +5,6 @@ namespace CashMachine.Application.Abstractions.Reposituries
     public interface IBankAccountHistoryRepository
     {
         IEnumerable<BankAccountHistory> GetAllByBankAccountId(Guid bankAccountId);
+        void Create(BankAccountHistory bankAccountHistory);
     }
 }

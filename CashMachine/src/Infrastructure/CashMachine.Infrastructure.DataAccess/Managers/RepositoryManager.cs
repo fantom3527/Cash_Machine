@@ -10,12 +10,18 @@ namespace CashMachine.Infrastructure.DataAccess.Managers
         private readonly IPostgresConnectionProvider _connectionProvider;
 
         public IBankAccountRepository BankAccountRepository { get; }
+        public IBankAccountHistoryRepository BankAccountHistoryRepository { get; }
         public IUserRepository UserRepository { get; }
 
-        public RepositoryManager(IPostgresConnectionProvider connectionProvider, IBankAccountRepository bankAccountRepository, IUserRepository userRepositor)
+        public RepositoryManager(
+            IPostgresConnectionProvider connectionProvider, 
+            IBankAccountRepository bankAccountRepository,
+            IBankAccountHistoryRepository bankAccountHistoryRepository,
+            IUserRepository userRepositor)
         {
             _connectionProvider = connectionProvider;
             BankAccountRepository = bankAccountRepository;
+            BankAccountHistoryRepository = bankAccountHistoryRepository;
             UserRepository = userRepositor;
         }
 
@@ -23,6 +29,7 @@ namespace CashMachine.Infrastructure.DataAccess.Managers
         { 
             _connectionProvider = connectionProvider;
             BankAccountRepository = new BankAccountRepository(connectionProvider);
+            BankAccountHistoryRepository = new BankAccountHistoryRepository(connectionProvider);
             UserRepository = new UserRepository(connectionProvider);
         }
     }
