@@ -1,4 +1,4 @@
-﻿namespace CashMachine.Application.Contracts.Users;
+﻿namespace CashMachine.Application.Contracts.Services.Users;
 
 public abstract record LoginResult
 {

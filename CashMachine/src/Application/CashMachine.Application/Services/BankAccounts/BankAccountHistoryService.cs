@@ -1,5 +1,5 @@
 ﻿using CashMachine.Application.Abstractions.Reposituries;
-using CashMachine.Application.Contracts.BankAccounts;
+using CashMachine.Application.Contracts.Services.BankAccounts;
 using CashMachine.Application.Models.BankAccounts;
 
 namespace CashMachine.Application.Services.BankAccounts

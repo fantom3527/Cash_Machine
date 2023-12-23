@@ -5,5 +5,6 @@ public enum BankAccountHistoryMethod
     add,
     delete,
     edit,
-    editbalance
+    withdrawbalance,
+    topupbalance
 }
