@@ -1,18 +1,21 @@
 ﻿using CashMachine.Application.Contracts.Managers;
-using CashMachine.Application.Contracts.Users;
+using CashMachine.Application.Contracts.Services.Users;
 using System.Diagnostics.CodeAnalysis;
 
 namespace CashMachine.Presentation.Console.Scenarios.Login.Admin
 {
-    public class LoginAdminScenarioProvider : IScenarioProvider
+    public class LoginAdminScenarioProvider : ILoginScenarioProvider
     {
+        private readonly IEnumerable<ICustomerScenarioProvider> _provider;
         private readonly IUserService _service;
         private readonly ICurrentUserManager _currentUser;
 
         public LoginAdminScenarioProvider(
+            IEnumerable<ICustomerScenarioProvider> provider,
             IUserService service,
             ICurrentUserManager currentUser)
         {
+            _provider = provider;
             _service = service;
             _currentUser = currentUser;
         }
@@ -26,7 +29,7 @@ namespace CashMachine.Presentation.Console.Scenarios.Login.Admin
                 return false;
             }
 
-            scenario = new LoginAdminScenario(_service);
+            scenario = new LoginAdminScenario(_provider, _service);
             return true;
         }
     }

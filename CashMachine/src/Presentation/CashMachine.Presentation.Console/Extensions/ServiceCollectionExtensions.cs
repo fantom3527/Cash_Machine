@@ -1,4 +1,10 @@
-﻿using CashMachine.Presentation.Console.Scenarios.Login.Admin;
+﻿using CashMachine.Presentation.Console.Scenarios.BankAccount.AdminScenarios.GetAll;
+using CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenarios.Create;
+using CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenarios.GetAllHistory;
+using CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenarios.GetBalance;
+using CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenarios.TopUpMoney;
+using CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenarios.WithdrawMoney;
+using CashMachine.Presentation.Console.Scenarios.Login.Admin;
 using CashMachine.Presentation.Console.Scenarios.Login.Customer;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,9 +15,15 @@ public static class ServiceCollectionExtensions
     {
         collection.AddScoped<ScenarioRunner>();
 
-        // TODO: проверить.
-        collection.AddScoped<IScenarioProvider, LoginCustomerScenarioProvider>();
-        collection.AddScoped<IScenarioProvider, LoginAdminScenarioProvider>();
+        collection.AddScoped<ILoginScenarioProvider, LoginCustomerScenarioProvider>();
+        collection.AddScoped<ILoginScenarioProvider, LoginAdminScenarioProvider>();
+
+        collection.AddScoped<ICustomerScenarioProvider, CreateBankAccountScenarioProvider>();
+        collection.AddScoped<ICustomerScenarioProvider, GetBalanceBAScenarioProvider>();
+        collection.AddScoped<ICustomerScenarioProvider, GetAllHistoryByBAScenarioProvider>();
+        collection.AddScoped<ICustomerScenarioProvider, TopUpMoneyBAScenarioProvider>();
+        collection.AddScoped<ICustomerScenarioProvider, WithdrawMoneyBAScenarioProvider>();
+        collection.AddScoped<IAdminScenarioProvider, GetAllBAScenarioProvider>();
 
         return collection;
     }

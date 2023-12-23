@@ -4,9 +4,9 @@ namespace CashMachine.Presentation.Console;
 
 public class ScenarioRunner
 {
-    private readonly IEnumerable<IScenarioProvider> _providers;
+    private readonly IEnumerable<ILoginScenarioProvider> _providers;
 
-    public ScenarioRunner(IEnumerable<IScenarioProvider> providers)
+    public ScenarioRunner(IEnumerable<ILoginScenarioProvider> providers)
     {
         _providers = providers;
     }
