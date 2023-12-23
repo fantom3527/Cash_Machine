@@ -19,7 +19,8 @@ public class Initial : SqlMigration
         'add',
         'delete',
         'edit',
-        'editbalance'
+        'withdrawbalance',
+        'topupbalance'
     );
 
     CREATE TABLE ""user"" (
@@ -29,26 +30,25 @@ public class Initial : SqlMigration
         name VARCHAR(255) NOT NULL,
         description TEXT,
         actual BOOLEAN NOT NULL,
-        ts TIMESTAMP NOT NULL
+        ts TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS bank_account (
         id UUID PRIMARY KEY,
         user_id UUID NOT NULL REFERENCES ""user""(id),
         pin_code_hash VARCHAR(64),
-        name VARCHAR(255) NOT NULL,
+        ""number"" SMALLINT NOT NULL,
         balance DECIMAL(20, 2) NOT NULL,
         actual BOOLEAN NOT NULL,
-        ts TIMESTAMP NOT NULL
+        ts TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS bank_account_history (
         id UUID PRIMARY KEY,
         bank_account_id UUID NOT NULL REFERENCES bank_account(id),
         method bank_account_history_method NOT NULL,
-        name VARCHAR(255) NOT NULL,
         description TEXT,
-        ts TIMESTAMP NOT NULL
+        ts TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL
     );
     ";
 
