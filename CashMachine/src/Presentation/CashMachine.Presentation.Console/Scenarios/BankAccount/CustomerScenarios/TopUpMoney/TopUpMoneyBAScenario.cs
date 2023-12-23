@@ -10,6 +10,7 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
         private readonly IBankAccountService _bankAccountService;
         private readonly ICurrentBankAccountManager _currentBankAccountManager;
 
+        /// <inheritdoc />
         public string Name => "Top up money bank account";
 
         public TopUpMoneyBAScenario(
@@ -20,6 +21,7 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
             _currentBankAccountManager = currentBankAccountManager;
         }
 
+        /// <inheritdoc />
         public void Run()
         {
             AnsiConsole.MarkupLine("[blue]Top up money bank account[/]");

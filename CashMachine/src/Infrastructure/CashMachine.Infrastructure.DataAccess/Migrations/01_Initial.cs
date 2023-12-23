@@ -3,9 +3,17 @@ using Itmo.Dev.Platform.Postgres.Migrations;
 
 namespace CashMachine.Infrastructure.DataAccess.Migrations;
 
+/// <summary>
+/// Миграция для создания начальных данных.
+/// </summary>
 [Migration(1, "Initial")]
 public class Initial : SqlMigration
 {
+    /// <summary>
+    /// Получает SQL-скрипт для применения миграции.
+    /// </summary>
+    /// <param name="serviceProvider">Провайдер служб.</param>
+    /// <returns>SQL-скрипт для создания типа "user_role".</returns>
     protected override string GetUpSql(IServiceProvider serviceProvider)
         => @"
     CREATE TYPE ""user_role"" as enum
@@ -52,6 +60,11 @@ public class Initial : SqlMigration
     );
     ";
 
+    /// <summary>
+    /// Переопределение метода для запроса SQL на удаление таблиц в базе данных, если не получилось их добавить в GetUpSql.
+    /// </summary>
+    /// <param name="serviceProvider">Провайдер служб для взаимодействия с внешним сервисами и фреймворками.</param>
+    /// <returns>SQL-запрос на удаление таблиц пользователя, банковского счета и истории банковских счетов.</returns>
     protected override string GetDownSql(IServiceProvider serviceProvider)
         => @"
     DROP TABLE ""user"";

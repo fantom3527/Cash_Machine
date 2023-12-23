@@ -8,16 +8,22 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CashMachine.Infrastructure.DataAccess.Extensions;
 
+/// <summary>
+/// Предоставляет расширения для регистрации служб доступа к данным в коллекции сервисов.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Расширение для добавления служб доступа к данным в коллекцию сервисов.
+    /// </summary>
+    /// <param name="services">Коллекция сервисов.</param>
+    /// <param name="configuration">Конфигурация подключения к базе данных Postgres.</param>
     public static IServiceCollection AddInfrastructureDataAccess(
         this IServiceCollection services,
         Action<PostgresConnectionConfiguration> configuration)
     {
         services.AddPlatformPostgres(builder => builder.Configure(configuration));
         services.AddPlatformMigrations(typeof(ServiceCollectionExtensions).Assembly);
-
-        //TODO: проверить надо ли добавлять маппинг collection.AddSingleton<IDataSourcePlugin, MappingPlugin>();
 
         services.AddScoped<IBankAccountHistoryRepository, BankAccountHistoryRepository>();
         services.AddScoped<IBankAccountRepository, BankAccountRepository>();

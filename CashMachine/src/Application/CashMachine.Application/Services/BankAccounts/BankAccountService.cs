@@ -5,6 +5,7 @@ using CashMachine.Application.Models.BankAccounts;
 
 namespace CashMachine.Application.Services.BankAccounts
 {
+    /// <inheritdoc />
     public class BankAccountService : IBankAccountService
     {
         private readonly IRepositoryManager _repositoryManager;
@@ -12,12 +13,13 @@ namespace CashMachine.Application.Services.BankAccounts
         public BankAccountService(IRepositoryManager repositoryManager)
             => _repositoryManager = repositoryManager;
 
-        //TODO: удалить
-        public BankAccount Get(Guid id)
+        /// <inheritdoc />
+        public IEnumerable<BankAccount> GetAll()
         {
-            return null/*_repository.Get(id)*/;
+            return _repositoryManager.BankAccountRepository.GetAll();
         }
 
+        /// <inheritdoc />
         public void Create(Guid userId, ushort number, string pinCode)
         {
             var bankAccount = CreateBankAccount(userId, number, pinCode);
@@ -26,11 +28,13 @@ namespace CashMachine.Application.Services.BankAccounts
             CreateBankAccountHistory(bankAccount.Id, BankAccountHistoryMethod.add);
         }
 
+        /// <inheritdoc />
         public decimal GetBalance(Guid id)
         {
             return _repositoryManager.BankAccountRepository.GetBalance(id);
         }
 
+        /// <inheritdoc />
         public decimal WithdrawMoney(Guid id, decimal amount)
         {
             var balance = _repositoryManager.BankAccountRepository.GetBalance(id);
@@ -47,6 +51,7 @@ namespace CashMachine.Application.Services.BankAccounts
             return value;
         }
 
+        /// <inheritdoc />
         public decimal TopUpMoney(Guid id, decimal amount)
         {
             var balance = _repositoryManager.BankAccountRepository.GetBalance(id);
@@ -63,6 +68,7 @@ namespace CashMachine.Application.Services.BankAccounts
             return value;
         }
 
+        /// <inheritdoc />
         private void CreateBankAccountHistory(Guid bankAccountId, BankAccountHistoryMethod historyMethod, string? desctiption = null)
         {
             var bankAccountHistory = new BankAccountHistory
@@ -77,6 +83,7 @@ namespace CashMachine.Application.Services.BankAccounts
             _repositoryManager.BankAccountHistoryRepository.Create(bankAccountHistory);
         }
 
+        /// <inheritdoc />
         private BankAccount CreateBankAccount(Guid userId, ushort number, string pinCode)
         {
             var pinCodeHash = PasswordHasher.CreateHash(pinCode);

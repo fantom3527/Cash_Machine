@@ -8,8 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CashMachine.Application.Extensions
 {
+    /// <summary>
+    /// Сдержит метод расширения для IServiceCollection
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Метод добавляющий зарегистрированные сервисы приложения в контейнер внедрения зависимостей.
+        /// </summary>
+        /// <param name="services">Коллекция сервисов.</param>
+        /// <returns>Коллекция сервисов с добавленными приложением сервисами.</returns>
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>(); 

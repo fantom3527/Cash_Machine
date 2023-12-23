@@ -6,12 +6,12 @@ namespace CashMachine.Presentation.Console.Scenarios.Login.Admin
 {
     public class LoginAdminScenarioProvider : ILoginScenarioProvider
     {
-        private readonly IEnumerable<ICustomerScenarioProvider> _provider;
+        private readonly IEnumerable<IAdminScenarioProvider> _provider;
         private readonly IUserService _service;
         private readonly ICurrentUserManager _currentUser;
 
         public LoginAdminScenarioProvider(
-            IEnumerable<ICustomerScenarioProvider> provider,
+            IEnumerable<IAdminScenarioProvider> provider,
             IUserService service,
             ICurrentUserManager currentUser)
         {
@@ -20,6 +20,7 @@ namespace CashMachine.Presentation.Console.Scenarios.Login.Admin
             _currentUser = currentUser;
         }
 
+        /// <inheritdoc />
         public bool TryGetScenario(
             [NotNullWhen(true)] out IScenario? scenario)
         {

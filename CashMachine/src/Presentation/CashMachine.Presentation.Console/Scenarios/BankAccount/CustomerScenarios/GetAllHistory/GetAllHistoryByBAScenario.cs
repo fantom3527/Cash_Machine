@@ -8,6 +8,8 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
     {
         private readonly ICurrentBankAccountManager _currentBankAccountManager;
         private readonly IBankAccountHistoryService _bankAccountHistoryService;
+
+        /// <inheritdoc />
         public string Name => "Get all history by bank account";
 
         public GetAllHistoryByBAScenario(
@@ -18,6 +20,7 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
             _bankAccountHistoryService = bankAccountHistoryService;
         }
 
+        /// <inheritdoc />
         public void Run()
         {
             AnsiConsole.MarkupLine("[blue]All history by bank account[/]");

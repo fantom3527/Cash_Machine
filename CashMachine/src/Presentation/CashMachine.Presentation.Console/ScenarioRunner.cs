@@ -18,15 +18,16 @@ public class ScenarioRunner
         AnsiConsole.Write(new FigletText("Welcome to Our Bank ATM")
             .Color(Color.Blue));
 
-        AnsiConsole.MarkupLine("[bold green]Welcome, User! Please proceed with your card.[/]");
+        while (true)
+        {
+            SelectionPrompt<IScenario> selector = new SelectionPrompt<IScenario>()
+                .Title("Select action")
+                .AddChoices(scenarios)
+                .UseConverter(x => x.Name);
 
-        SelectionPrompt<IScenario> selector = new SelectionPrompt<IScenario>()
-            .Title("Select action")
-            .AddChoices(scenarios)
-            .UseConverter(x => x.Name);
-
-        var scenario = AnsiConsole.Prompt(selector);
-        scenario.Run();
+            var scenario = AnsiConsole.Prompt(selector);
+            scenario.Run();
+        }
     }
 
     private IEnumerable<IScenario> GetScenarios()

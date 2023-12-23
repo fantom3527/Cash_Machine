@@ -9,6 +9,7 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
         private readonly IBankAccountService _bankAccountService;
         private readonly ICurrentBankAccountManager _currentBankAccountManager;
 
+        /// <inheritdoc />
         public string Name => "Withdraw money bank account";
 
         public WithdrawMoneyBAScenario(

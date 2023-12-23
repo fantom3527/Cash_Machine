@@ -8,6 +8,7 @@ public class LoginCustomerScenario : IScenario
     private readonly IEnumerable<ICustomerScenarioProvider> _providers;
     private readonly IUserService _userService;
 
+    /// <inheritdoc />
     public string Name => "Login as customer";
 
     public LoginCustomerScenario(
@@ -18,6 +19,7 @@ public class LoginCustomerScenario : IScenario
         _userService = userService;
     }
 
+    /// <inheritdoc />
     public void Run()
     {
         var number = AnsiConsole.Ask<ushort>("Enter your bank account number");

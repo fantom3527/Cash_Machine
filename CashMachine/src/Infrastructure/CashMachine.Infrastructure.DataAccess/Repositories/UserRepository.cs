@@ -6,12 +6,14 @@ using Npgsql;
 
 namespace CashMachine.Infrastructure.DataAccess.Repositories
 {
+    /// <inheritdoc />
     public class UserRepository : IUserRepository
     {
         private readonly IPostgresConnectionProvider _connectionProvider;
         public UserRepository(IPostgresConnectionProvider connectionProvider)
             => _connectionProvider = connectionProvider;
 
+        /// <inheritdoc />
         public User? Get(Guid id)
         {
             const string sql = @"
@@ -50,6 +52,7 @@ namespace CashMachine.Infrastructure.DataAccess.Repositories
                 );
         }
 
+        /// <inheritdoc />
         public User? GetUserByPassword(string passwordHash)
         {
             const string sql = @"

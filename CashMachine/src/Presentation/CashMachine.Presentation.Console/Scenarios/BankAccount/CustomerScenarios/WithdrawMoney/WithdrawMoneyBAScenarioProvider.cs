@@ -19,6 +19,8 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
             _currentUser = currentUser;
             _currentBankAccountManager = currentBankAccountManager;
         }
+
+        /// <inheritdoc />
         public bool TryGetScenario([NotNullWhen(true)] out IScenario? scenario)
         {
             if (_currentUser.User is null)

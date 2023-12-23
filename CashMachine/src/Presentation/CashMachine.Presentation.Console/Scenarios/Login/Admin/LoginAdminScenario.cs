@@ -5,15 +5,19 @@ namespace CashMachine.Presentation.Console.Scenarios.Login.Admin;
 
 public class LoginAdminScenario : IScenario
 {
-    private readonly IEnumerable<ICustomerScenarioProvider> _providers;
+    private readonly IEnumerable<IAdminScenarioProvider> _providers;
     private readonly IUserService _userService;
+
+    /// <inheritdoc />
     public string Name => "Login as admin";
 
-    public LoginAdminScenario(IEnumerable<ICustomerScenarioProvider> providers, IUserService userService)
+    public LoginAdminScenario(IEnumerable<IAdminScenarioProvider> providers, IUserService userService)
     {
         _providers = providers;
         _userService = userService;
     }
+
+    /// <inheritdoc />
     public void Run()
     {
         var password = AnsiConsole.Ask<string>("Enter your password");
@@ -28,16 +32,18 @@ public class LoginAdminScenario : IScenario
 
         AnsiConsole.Clear();
         AnsiConsole.MarkupLine($"[green]{message}[/]");
-
         IEnumerable<IScenario> scenarios = GetScenarios();
 
-        SelectionPrompt<IScenario> selector = new SelectionPrompt<IScenario>()
+        while (true)
+        {
+            SelectionPrompt<IScenario> selector = new SelectionPrompt<IScenario>()
             .Title("Select action")
             .AddChoices(scenarios)
             .UseConverter(x => x.Name);
 
-        var scenario = AnsiConsole.Prompt(selector);
-        scenario.Run();
+            var scenario = AnsiConsole.Prompt(selector);
+            scenario.Run();
+        }
     }
 
     private IEnumerable<IScenario> GetScenarios()

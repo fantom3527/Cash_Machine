@@ -3,9 +3,10 @@ using CashMachine.Application.Models.BankAccounts;
 
 namespace CashMachine.Application.Managers
 {
+    /// <inheritdoc />
     public class CurrentBankAccountManager : ICurrentBankAccountManager
     {
-        //TODO: Оставить только поле Id
+        /// <inheritdoc />
         public BankAccount? BankAccount { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using CashMachine.Application.Managers;
 
 namespace CashMachine.Application.Services.Users
 {
+    /// <inheritdoc />
     public class UserService : IUserService
     {
         private readonly IRepositoryManager _repositoryManager;
@@ -21,6 +22,7 @@ namespace CashMachine.Application.Services.Users
             _currentBankAccountManager = currentBankAccountManager;
         }
 
+        /// <inheritdoc />
         public LoginResult LoginAsAdmin(string systemPassword)
         {
             var systemPasswordHash = PasswordHasher.CreateHash(systemPassword);
@@ -35,6 +37,7 @@ namespace CashMachine.Application.Services.Users
             return new LoginResult.Success();
         }
 
+        /// <inheritdoc />
         public LoginResult LoginAsCustomer(ushort bankAccountNumber, string bankAccountPassword)
         {
             var bankAccountPasswordHash = PasswordHasher.CreateHash(bankAccountPassword);

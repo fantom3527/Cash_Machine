@@ -5,12 +5,16 @@ using Itmo.Dev.Platform.Postgres.Connection;
 
 namespace CashMachine.Infrastructure.DataAccess.Managers
 {
+    /// <inheritdoc />
     public class RepositoryManager : IRepositoryManager
     {
         private readonly IPostgresConnectionProvider _connectionProvider;
 
+        /// <inheritdoc />
         public IBankAccountRepository BankAccountRepository { get; }
+        /// <inheritdoc />
         public IBankAccountHistoryRepository BankAccountHistoryRepository { get; }
+        /// <inheritdoc />
         public IUserRepository UserRepository { get; }
 
         public RepositoryManager(

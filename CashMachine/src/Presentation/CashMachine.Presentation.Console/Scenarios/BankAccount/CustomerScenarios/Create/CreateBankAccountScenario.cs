@@ -9,6 +9,7 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
         private readonly IBankAccountService _bankAccountService;
         private readonly ICurrentUserManager _currentUser;
 
+        /// <inheritdoc />
         public string Name => "Create bank account";
 
         public CreateBankAccountScenario(
@@ -19,9 +20,9 @@ namespace CashMachine.Presentation.Console.Scenarios.BankAccount.CustomerScenari
             _currentUser = currentUser;
         }
 
+        /// <inheritdoc />
         public void Run()
         {
-            //TODO: замечания при вводе неккоректных данных
             AnsiConsole.MarkupLine("[blue]Create bank account[/]");
             var pinCode = AnsiConsole.Ask<string>("Come up with a PIN code");
             var number = AnsiConsole.Ask<ushort>("Сome up with a number");

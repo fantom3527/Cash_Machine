@@ -12,11 +12,11 @@ services
     .AddInfrastructureDataAccess(configuration =>
     {
         //TODO:поменять для Docker настройки
-        configuration.Host = "localhost";
+        configuration.Host = "postgres_db";
         configuration.Port = 5432; //6432;
         configuration.Username = "postgres";
-        configuration.Password = "asdf$1234";
-        configuration.Database = "testCashMachine";
+        configuration.Password = "123";
+        configuration.Database = "testcashmachine";
         configuration.SslMode = "Prefer";
     })
     .AddPresentationConsole();

@@ -1,6 +1,7 @@
 ﻿namespace CashMachine.Presentation.Console
 {
-    public interface ICustomerScenarioProvider : IScenarioProvider
-    {
-    }
+    /// <summary>
+    /// Интерфейс, определяющий провайдера сценариев для клиентов.
+    /// </summary>
+    public interface ICustomerScenarioProvider : IScenarioProvider {}
 }

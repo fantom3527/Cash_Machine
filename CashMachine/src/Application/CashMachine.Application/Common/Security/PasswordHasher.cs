@@ -3,8 +3,16 @@ using System.Text;
 
 namespace CashMachine.Application.Common.Security
 {
+    /// <summary>
+    /// Предоставляет методы для хэширования паролей.
+    /// </summary>
     internal static class PasswordHasher
     {
+        // <summary>
+        /// Создает хэш для указанной строки.
+        /// </summary>
+        /// <param name="value">Исходная строка, для которой требуется создать хэш.</param>
+        /// <returns>Хэш в шестнадцатеричном формате.</returns>
         public static string CreateHash(string value)
         {
             using (SHA256 sha256Hash = SHA256.Create())

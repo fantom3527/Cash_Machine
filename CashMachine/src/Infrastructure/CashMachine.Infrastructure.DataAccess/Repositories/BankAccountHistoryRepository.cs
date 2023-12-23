@@ -6,6 +6,7 @@ using Npgsql;
 
 namespace CashMachine.Infrastructure.DataAccess.Repositories
 {
+    /// <inheritdoc />
     public class BankAccountHistoryRepository : IBankAccountHistoryRepository
     {
         private readonly IPostgresConnectionProvider _connectionProvider;
@@ -13,6 +14,7 @@ namespace CashMachine.Infrastructure.DataAccess.Repositories
         public BankAccountHistoryRepository(IPostgresConnectionProvider connectionProvider)
             => _connectionProvider = connectionProvider;
 
+        /// <inheritdoc />
         public IEnumerable<BankAccountHistory> GetAllByBankAccountId(Guid bankAccountId)
         {
             const string sql = @"
@@ -42,6 +44,7 @@ namespace CashMachine.Infrastructure.DataAccess.Repositories
             }
         }
 
+        /// <inheritdoc />
         public void Create(BankAccountHistory bankAccountHistory)
         {
             const string sql = @"

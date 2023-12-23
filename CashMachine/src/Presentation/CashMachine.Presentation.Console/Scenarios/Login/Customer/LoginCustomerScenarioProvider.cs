@@ -20,6 +20,7 @@ namespace CashMachine.Presentation.Console.Scenarios.Login.Customer
             _currentUser = currentUser;
         }
 
+        /// <inheritdoc />
         public bool TryGetScenario(
             [NotNullWhen(true)] out IScenario? scenario)
         {

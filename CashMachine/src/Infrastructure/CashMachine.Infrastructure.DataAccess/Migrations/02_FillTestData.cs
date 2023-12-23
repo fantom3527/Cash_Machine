@@ -3,9 +3,18 @@ using Itmo.Dev.Platform.Postgres.Migrations;
 
 namespace CashMachine.Infrastructure.DataAccess.Migrations
 {
+
+    /// <summary>
+    /// Миграция для заполнения тестовых данных.
+    /// </summary>
     [Migration(2, "FillTestData")]
     public class FillTestData : SqlMigration
     {
+        /// <summary>
+        /// Получает SQL-скрипт для применения миграции.
+        /// </summary>
+        /// <param name="serviceProvider">Провайдер служб.</param>
+        /// <returns>SQL-скрипт для создания типа "user_role".</returns>
         protected override string GetUpSql(IServiceProvider serviceProvider)
             => @"
 		INSERT INTO ""user""(
@@ -24,6 +33,11 @@ namespace CashMachine.Infrastructure.DataAccess.Migrations
 			    '20000', true, '2001-12-22 00:00:00');
         ";
 
+        /// <summary>
+        /// Переопределение метода для запроса SQL на удаление данных из таблиц в базе данных, если не получилось их добавить в GetUpSql.
+        /// </summary>
+        /// <param name="serviceProvider">Провайдер служб для взаимодействия с внешним сервисами и фреймворками.</param>
+        /// <returns>SQL-запрос на удаление таблиц пользователя, банковского счета и истории банковских счетов.</returns>
         protected override string GetDownSql(IServiceProvider serviceProvider)
             => @"
 		DELETE FROM bank_account;

@@ -9,8 +9,17 @@ using CashMachine.Presentation.Console.Scenarios.Login.Customer;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CashMachine.Presentation.Console.Extensions;
+
+/// <summary>
+/// Класс, содержащий метод расширения для IServiceCollection.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Метод для добавления сервисов презентационного слоя консоли в коллекцию сервисов.
+    /// </summary>
+    /// <param name="collection">Коллекция сервисов.</param>
+    /// <returns>Коллекция сервисов с добавленными сервисами презентационного слоя консоли.</returns>
     public static IServiceCollection AddPresentationConsole(this IServiceCollection collection)
     {
         collection.AddScoped<ScenarioRunner>();
