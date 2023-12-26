@@ -12,7 +12,7 @@ namespace CashMachine.Application.Abstractions.Reposituries
         /// </summary>
         /// <param name="password">Пароль пользователя.</param>
         /// <returns>Пользователь, соответствующий указанному паролю.</returns>
-        User? GetUserByPassword(string password);
+        User? GetUserByPassword(string passwordHash);
 
         /// <summary>
         /// Получает пользователя по идентификатору.

@@ -6,7 +6,7 @@ namespace CashMachine.Application.Common.Security
     /// <summary>
     /// Предоставляет методы для хэширования паролей.
     /// </summary>
-    internal static class PasswordHasher
+    public static class PasswordHasher
     {
         // <summary>
         /// Создает хэш для указанной строки.
